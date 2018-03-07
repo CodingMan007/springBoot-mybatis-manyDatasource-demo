@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="info" monitorInterval="60">
+    <Properties>
+        <Property name="default_log_pattern">
+            [log4j2 : %d{yyyy-MM-dd HH:mm:ss.SSS} ${hostName}] [%-5p] [%t] (%c{1}:%L) %m%n
+        </Property>
+        
+        <Property name="projectName">yxp-demo-template</Property>
+    </Properties>
+
+    <Appenders>
+        <Console name="STDOUT" target="SYSTEM_OUT">
+            <PatternLayout pattern="${default_log_pattern}"/>
+        </Console>
+
+        <File name="jsonFile" fileName="${sys:logpath}-${projectName}_json.log">
+            <log4j1JsonLayout/>
+        </File>
+
+        <File name="infoFile" fileName="${sys:logpath}-${projectName}_info.log">
+            <PatternLayout pattern="${default_log_pattern}"/>
+        </File>
+
+        <File name="errorFile" fileName="${sys:logpath}-${projectName}_error.log">
+            <PatternLayout pattern="${default_log_pattern}"/>
+        </File>
+    </Appenders>
+
+    <Loggers>
+        <Root level="info">
+            <AppenderRef ref="STDOUT" level="info"/>
+            <AppenderRef ref="infoFile" level="info"/>
+            <AppenderRef ref="errorFile" level="error"/>
+            <!--<AppenderRef ref="jsonFile" level="info"/>-->
+        </Root>
+    </Loggers>
+</Configuration>
