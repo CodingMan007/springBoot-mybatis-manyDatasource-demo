@@ -2,13 +2,13 @@ package com.xs.demo.config;
 
 import com.alibaba.druid.pool.DruidDataSource;
 import com.yxp.common.db.manyDatasource.ManyDataSource;
+import com.yxp.common.db.manyDatasource.transaction.ManyDataSourceTransactionManager;
 import org.mybatis.spring.annotation.MapperScan;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.PlatformTransactionManager;
 
 import javax.sql.DataSource;
@@ -72,7 +72,7 @@ public class DataSourceConfig {
 
         ManyDataSource manyDataSource = new ManyDataSource();
         manyDataSource.setTargetDataSources(map);
-        manyDataSource.setDefaultTargetDataSource(apiWriteDataSource);
+        manyDataSource.setDefaultTargetDataSource(apiReadDataSource);
         logger.info("init manyDataSource complate ...... " + manyDataSource);
         return manyDataSource;
     }
@@ -93,12 +93,12 @@ public class DataSourceConfig {
 
 
     @Bean
-    public PlatformTransactionManager apiWriteTransactionManager(DataSource apiWriteDataSource) {
-        return new DataSourceTransactionManager(apiWriteDataSource);
+    public PlatformTransactionManager slaveTransactionManager(DataSource dataSource) {
+        return new ManyDataSourceTransactionManager(dataSource);
     }
 
     @Bean
-    public PlatformTransactionManager apiReadTransactionManager(DataSource apiReadDataSource) {
-        return new DataSourceTransactionManager(apiReadDataSource);
+    public PlatformTransactionManager masterTransactionManager(DataSource dataSource) {
+        return new ManyDataSourceTransactionManager(dataSource);
     }
 }

@@ -21,4 +21,5 @@ public interface ApiAccessLogService {
     
     
     void testTransactional(ApiAccessLog apiAccessLog);
+    
 }

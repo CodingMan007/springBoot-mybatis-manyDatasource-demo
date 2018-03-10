@@ -6,11 +6,11 @@ spring:
     password: '{cipher}4d09c4d0f59447c56f4a8374e251554fef66fb89dceb68271ce90078a427e3a8'
     driver-class-name: com.mysql.jdbc.Driver
     read:
-      url: jdbc:mysql://172.16.98.17:3306/yxp_api_manager?useUnicode=true&characterEncoding=utf8
+      url: jdbc:mysql://172.16.98.17:3306/uxin_notice?characterEncoding=utf8&useSSL=false
       username: xin
       password: 48sdf37EB7
     write:
-      url: jdbc:mysql://172.16.98.17:3306/yxp_api_manager?useUnicode=true&characterEncoding=utf8
+      url: jdbc:mysql://172.16.98.17:3306/yxp_api_manager?useUnicode=true&characterEncoding=utf8&test=test
       username: xin
       password: 48sdf37EB7
       

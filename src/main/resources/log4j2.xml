@@ -27,10 +27,8 @@
     </Appenders>
 
     <Loggers>
-        <Root level="info">
-            <AppenderRef ref="STDOUT" level="info"/>
-            <AppenderRef ref="infoFile" level="info"/>
-            <AppenderRef ref="errorFile" level="error"/>
+        <Root level="debug">
+            <AppenderRef ref="STDOUT" level="debug"/>
             <!--<AppenderRef ref="jsonFile" level="info"/>-->
         </Root>
     </Loggers>

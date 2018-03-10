@@ -25,15 +25,15 @@ public class ApiAccessLogServiceTest extends CleanSpringbootProjectApplicationTe
 
     @Test
     public void testTransactional() {
-            ApiAccessLog apiAccessLog = new ApiAccessLog();
-        try {
-            apiAccessLog.setAppKey("test");
-            apiAccessLog.setAccessTime(new Date());
-            apiAccessLog.setResourceUri("/testTransactional");
-            logService.testTransactional(apiAccessLog);
-        } finally {
-            logService.testTransactional(apiAccessLog);
-        }
+        ApiAccessLog apiAccessLog = new ApiAccessLog();
+//        try {
+        apiAccessLog.setAppKey("test");
+        apiAccessLog.setAccessTime(new Date());
+        apiAccessLog.setResourceUri("/testTransactional");
+//            logService.testTransactional(apiAccessLog);
+//        } finally {
+        logService.testTransactional(apiAccessLog);
+//        }
     }
 
 }
