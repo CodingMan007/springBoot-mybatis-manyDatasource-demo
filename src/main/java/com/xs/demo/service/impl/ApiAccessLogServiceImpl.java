@@ -1,6 +1,6 @@
 package com.xs.demo.service.impl;
 
-import com.xs.demo.dao.ApiAccessLogMapper;
+import com.xs.demo.dao.portal.ApiAccessLogMapper;
 import com.xs.demo.service.ApiAccessLogService;
 import com.xs.demo.service.ApiAccessLogService1;
 import com.yxp.common.db.entity.apiportal.ApiAccessLog;
@@ -40,7 +40,7 @@ public class ApiAccessLogServiceImpl implements ApiAccessLogService {
         try {
             apiAccessLogServiceImpl1.testTransactional1(apiAccessLog);
         } catch (Exception e) {
-
+            System.err.println(e);
         }
 //        throw new RuntimeException("123");
     }

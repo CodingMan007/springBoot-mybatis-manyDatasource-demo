@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xs.demo.dao.notice.NoticeAccessLogMapper">
+    <resultMap id="BaseResultMap" type="com.yxp.common.db.entity.apiportal.ApiAccessLog">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="app_key" property="appKey" jdbcType="VARCHAR"/>
+        <result column="access_time" property="accessTime" jdbcType="TIMESTAMP"/>
+        <result column="resource_uri" property="resourceUri" jdbcType="VARCHAR"/>
+        <result column="req_param" property="reqParam" jdbcType="VARCHAR"/>
+        <result column="access_result" property="accessResult" jdbcType="TINYINT"/>
+        <result column="time_consuming" property="timeConsuming" jdbcType="BIGINT"/>
+        <result column="ip_addr" property="ipAddr" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+      id, app_key, access_time, resource_uri, req_param, access_result, time_consuming,ip_addr
+    </sql>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        select
+        <include refid="Base_Column_List"/>
+        from api_access_log
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+
+    <select id="statisticalTodayFlow" resultType="java.lang.Long">
+     SELECT count(*)
+        FROM   api_access_log
+        WHERE  app_key = #{appKey}
+               AND resource_uri = #{resUri}
+               AND access_time > #{date}
+    </select>
+
+
+    <insert id="insertSelective" parameterType="com.yxp.common.db.entity.apiportal.ApiAccessLog" keyProperty="priId"
+            useGeneratedKeys="true">
+        insert into api_access_log
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="appKey != null">
+                app_key,
+            </if>
+            <if test="accessTime != null">
+                access_time,
+            </if>
+            <if test="resourceUri != null">
+                resource_uri,
+            </if>
+            <if test="reqParam != null">
+                req_param,
+            </if>
+            <if test="accessResult != null">
+                access_result,
+            </if>
+            <if test="timeConsuming != null">
+                time_consuming,
+            </if>
+            <if test="ipAddr != null">
+                ip_addr,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            <if test="appKey != null">
+                #{appKey,jdbcType=VARCHAR},
+            </if>
+            <if test="accessTime != null">
+                #{accessTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="resourceUri != null">
+                #{resourceUri,jdbcType=VARCHAR},
+            </if>
+            <if test="reqParam != null">
+                #{reqParam,jdbcType=VARCHAR},
+            </if>
+            <if test="accessResult != null">
+                #{accessResult,jdbcType=TINYINT},
+            </if>
+            <if test="timeConsuming != null">
+                #{timeConsuming,jdbcType=BIGINT},
+            </if>
+            <if test="ipAddr != null">
+                #{ipAddr,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.yxp.common.db.entity.apiportal.ApiAccessLog">
+        update api_access_log
+        <set>
+            <if test="appKey != null">
+                app_key = #{appKey,jdbcType=VARCHAR},
+            </if>
+            <if test="accessTime != null">
+                access_time = #{accessTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="resourceUri != null">
+                resource_uri = #{resourceUri,jdbcType=VARCHAR},
+            </if>
+            <if test="reqParam != null">
+                req_param = #{reqParam,jdbcType=VARCHAR},
+            </if>
+            <if test="accessResult != null">
+                access_result = #{accessResult,jdbcType=TINYINT},
+            </if>
+            <if test="timeConsuming != null">
+                time_consuming = #{timeConsuming,jdbcType=BIGINT},
+            </if>
+            <if test="ipAddr != null">
+                #{ipAddr,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+</mapper>

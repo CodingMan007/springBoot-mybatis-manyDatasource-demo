@@ -1,14 +1,13 @@
 package com.xs.demo.service.impl;
 
-import com.xs.demo.dao.ApiAccessLogMapper;
+import com.xs.demo.dao.notice.NoticeAccessLogMapper;
+import com.xs.demo.dao.portal.ApiAccessLogMapper;
 import com.xs.demo.service.ApiAccessLogService1;
 import com.yxp.common.db.entity.apiportal.ApiAccessLog;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.time.LocalDate;
 
 /**
  * ApiAccessLogServiceImpl
@@ -17,7 +16,7 @@ import java.time.LocalDate;
 @Service
 public class ApiAccessLogServiceImpl1 implements ApiAccessLogService1 {
     @Autowired
-    private ApiAccessLogMapper logMapper;
+    private NoticeAccessLogMapper logMapper;
 
     @Override
     public ApiAccessLog insert(ApiAccessLog record) {

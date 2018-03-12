@@ -1,4 +1,4 @@
-package com.xs.demo.dao;
+package com.xs.demo.dao.notice;
 
 import com.yxp.common.db.entity.apiportal.ApiAccessLog;
 import com.yxp.common.db.manyDatasource.DataSource;
@@ -6,7 +6,7 @@ import org.apache.ibatis.annotations.Param;
 
 import java.time.LocalDate;
 
-public interface ApiAccessLogMapper {
+public interface NoticeAccessLogMapper {
     @DataSource("master")
     int insertSelective(ApiAccessLog record);
 
