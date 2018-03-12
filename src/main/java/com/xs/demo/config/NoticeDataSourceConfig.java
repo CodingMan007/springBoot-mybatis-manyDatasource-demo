@@ -1,8 +1,8 @@
 package com.xs.demo.config;
 
 import com.alibaba.druid.pool.DruidDataSource;
+import com.xs.demo.service.transaction.ManyDataSourceTransactionManager;
 import com.yxp.common.db.manyDatasource.ManyDataSource;
-import com.yxp.common.db.manyDatasource.transaction.ManyDataSourceTransactionManager;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.SqlSessionTemplate;
